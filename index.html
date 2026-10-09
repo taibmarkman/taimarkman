@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tai Markman</title>
+<meta name="description" content="Tai Markman is a pre-doctoral research fellow at Stanford Law School studying how criminal enforcement shapes communities.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F8FA;
+    --ink: #172033;
+    --muted: #5A6478;
+    --rule: #D9DEE7;
+    --accent: #1F4E8C;
+    --accent-soft: #E6EDF7;
+    --serif: "Newsreader", Georgia, "Times New Roman", serif;
+    --sans: "Public Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #111620;
+      --ink: #E7EAF0;
+      --muted: #9AA3B5;
+      --rule: #2B3446;
+      --accent: #8DB4EA;
+      --accent-soft: #1B2638;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 1.125rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--accent); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  a:hover { text-decoration-thickness: 2px; }
+  a:focus-visible, summary:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .skip {
+    position: absolute; left: -999px; top: 0;
+    background: var(--ink); color: var(--bg);
+    padding: .5rem 1rem; font-family: var(--sans);
+  }
+  .skip:focus { left: 0; z-index: 10; }
+
+  .layout {
+    max-width: 62rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: grid;
+    grid-template-columns: 15rem minmax(0, 1fr);
+    gap: 4rem;
+  }
+
+  /* ---------- Sidebar ---------- */
+  .side {
+    position: sticky;
+    top: 0;
+    align-self: start;
+    padding: 4rem 0 2rem;
+    font-family: var(--sans);
+    font-size: .9rem;
+    line-height: 1.5;
+  }
+  .side h1 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 2.6rem;
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    margin: 0 0 .9rem;
+  }
+  .side .role { margin: 0 0 1.5rem; color: var(--muted); }
+  .side .role strong { color: var(--ink); font-weight: 600; }
+
+  .side nav ul { list-style: none; margin: 0 0 1.75rem; padding: 0; }
+  .side nav a {
+    display: block;
+    padding: .3rem 0 .3rem .8rem;
+    border-left: 2px solid var(--rule);
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .side nav a:hover, .side nav a[aria-current="true"] {
+    color: var(--ink);
+    border-left-color: var(--accent);
+  }
+
+  .contact { margin: 0; padding: 0; list-style: none; }
+  .contact li { margin-bottom: .35rem; }
+  .contact a { color: var(--ink); }
+
+  /* ---------- Main ---------- */
+  main { padding: 4rem 0 5rem; max-width: 40rem; }
+  section { margin-bottom: 3.5rem; scroll-margin-top: 2rem; }
+  h2 {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 0 0 1.1rem;
+    padding-bottom: .5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  h3 { font-size: 1.125rem; font-weight: 600; margin: 0; }
+  p { margin: 0 0 1rem; }
+
+  .lede { font-size: 1.3rem; line-height: 1.5; }
+
+  .paper { margin-bottom: 1.75rem; }
+  .paper .title { font-weight: 600; }
+  .paper .meta { color: var(--muted); margin: .15rem 0 .5rem; }
+  .paper .status { font-style: italic; }
+  .paper details { margin-top: .4rem; }
+  .paper summary {
+    cursor: pointer;
+    font-family: var(--sans);
+    font-size: .85rem;
+    color: var(--accent);
+    width: fit-content;
+  }
+  .paper details p {
+    margin: .6rem 0 0;
+    padding: .9rem 1.1rem;
+    background: var(--accent-soft);
+    font-size: 1.02rem;
+    line-height: 1.55;
+  }
+  .paper .links { font-family: var(--sans); font-size: .85rem; margin: .35rem 0 0; }
+  .paper .links a { margin-right: 1rem; }
+
+  .agenda { padding-left: 1.2rem; margin: 0 0 1rem; }
+  .agenda li { margin-bottom: .75rem; }
+
+  .entry { display: grid; grid-template-columns: 1fr auto; column-gap: 1rem; margin-bottom: 1.1rem; }
+  .entry .when { font-family: var(--sans); font-size: .85rem; color: var(--muted); padding-top: .25rem; white-space: nowrap; }
+  .entry .what { color: var(--muted); grid-column: 1 / -1; font-size: 1.02rem; }
+  .entry .what strong { color: var(--ink); font-weight: 500; }
+
+  .cv-link {
+    display: inline-block;
+    font-family: var(--sans);
+    font-size: .95rem;
+    font-weight: 500;
+    padding: .6rem 1.1rem;
+    border: 1.5px solid var(--accent);
+    color: var(--accent);
+    text-decoration: none;
+    border-radius: 3px;
+  }
+  .cv-link:hover { background: var(--accent); color: var(--bg); }
+
+  footer {
+    font-family: var(--sans);
+    font-size: .8rem;
+    color: var(--muted);
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  /* ---------- Mobile ---------- */
+  @media (max-width: 52rem) {
+    .layout { grid-template-columns: 1fr; gap: 0; padding: 0 1.25rem; }
+    .side { position: static; padding: 2.5rem 0 1.5rem; border-bottom: 1px solid var(--rule); }
+    .side h1 { font-size: 2.2rem; }
+    .side nav ul { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; }
+    .side nav a { border-left: 0; padding: .2rem 0; }
+    main { padding-top: 2rem; }
+    .entry { grid-template-columns: 1fr; }
+    .entry .when { padding-top: 0; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="layout">
+
+  <aside class="side">
+    <h1>Tai Markman</h1>
+    <p class="role">
+      <strong>Pre-Doctoral Research Fellow</strong><br>
+      Stanford Law School
+    </p>
+
+    <nav aria-label="Sections">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#papers">Papers</a></li>
+        <li><a href="#agenda">Work in progress</a></li>
+        <li><a href="#background">Background</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <ul class="contact">
+      <li><a href="mailto:markman1@law.stanford.edu">markman1@law.stanford.edu</a></li>
+      <li><a href="https://linkedin.com/in/tai-markman/">LinkedIn</a></li>
+      <li><a href="cv.pdf">Curriculum vitae (PDF)</a></li>
+    </ul>
+  </aside>
+
+  <main id="main">
+
+    <section id="about">
+      <p class="lede">
+        I study how criminal enforcement shapes communities: how policing practices affect crime,
+        how race affects outcomes at each stage of the criminal justice process, and what happens to
+        people after they move through the system.
+      </p>
+      <p>
+        I am a pre-doctoral research fellow at Stanford Law School, working with
+        <a href="https://law.stanford.edu/john-j-donohue-iii/">Professor John Donohue</a>
+        on empirical criminal justice research. I am also the lead quantitative researcher on
+        Racial Justice Act litigation with the Three Strikes Project, directed by Professor Michael Romano.
+        My methods are modern causal inference for panel data, especially staggered
+        difference-in-differences, along with randomized evaluations and item response theory.
+      </p>
+      <p>
+        I graduated from Georgetown University in 2025 with a B.A. in Political Economy.
+        I am applying to economics Ph.D. programs for Fall 2027.
+        Fields: applied microeconomics, public economics, economics of crime and discrimination,
+        political economy, labor economics.
+      </p>
+    </section>
+
+    <section id="papers">
+      <h2>Papers</h2>
+
+      <article class="paper">
+        <h3 class="title">Crime on ICE: Local Police Behavior and Immigration Enforcement in the United States</h3>
+        <p class="meta">
+          with John Donohue and Baldwin. <span class="status">Working paper.</span>
+        </p>
+        <details>
+          <summary>Abstract</summary>
+          <p>
+            A growing number of local police departments now hold authority to enforce federal immigration law,
+            a role traditionally reserved for federal officers. Despite claims that this authority enhances public
+            safety, empirical evidence remains limited. Using FBI Uniform Crime Report data from 2000&ndash;2024,
+            we exploit staggered adoption across U.S. jurisdictions to estimate causal effects on policing.
+            We find that this enforcement authority increases arrests for low-level, discretionary offenses by
+            approximately 7%, with no corresponding decreases in offense rates or serious crime. These results
+            suggest that such agreements realign police priorities toward discretionary enforcement without
+            measurable public safety benefits.
+          </p>
+        </details>
+      </article>
+
+      <article class="paper">
+        <h3 class="title">Loaded Chambers: Organized Interests, Public Opinion, and Policy Responsiveness in the American States</h3>
+        <p class="meta">
+          with Iwasaki, Baldwin, and John Donohue. <span class="status">NBER Working Paper No. 34970.</span>
+        </p>
+        <details>
+          <summary>Summary</summary>
+          <p>
+            We examine how state legislators respond to organized interests relative to constituent sentiment
+            on gun policy, using an instrumental variables approach. I built the Gun Law Index used as the outcome
+            measure and developed an item response theory and post-stratification approach to estimate new
+            measures of gun sentiment in each state.
+          </p>
+        </details>
+        <p class="links"><a href="https://www.nber.org/papers/w34970">NBER</a></p>
+      </article>
+
+      <article class="paper">
+        <h3 class="title">Ballots Beyond Bars: Understanding the Role of Information Costs in Voter Turnout for Those With Felony Convictions</h3>
+        <p class="meta">
+          <span class="status">Carroll Round Proceedings</span>, Vol. 20 (2026): 177&ndash;201.
+        </p>
+        <details>
+          <summary>Abstract</summary>
+          <p>
+            In recent years, U.S. states have adopted a wide variety of legislation to re-enfranchise those with
+            past felony convictions. However, a lack of transparency in these laws has resulted in increased
+            information costs for individuals, complicating their understanding of voter eligibility. We conduct
+            two large-scale randomized controlled trials in Pennsylvania to examine the effect of information
+            campaigns on both registration and turnout. While our findings indicate a statistically significant
+            increase in registration by 12%, we find no evidence that these campaigns enhanced voter turnout
+            overall, highlighting persistent structural, informational, and direct barriers associated with
+            voting for this historically underrepresented group. Our study provides actionable insight for
+            optimizing get-out-the-vote and information campaigns to effectively minimize de facto
+            disenfranchisement.
+          </p>
+        </details>
+      </article>
+    </section>
+
+    <section id="agenda">
+      <h2>Work in progress</h2>
+      <ul class="agenda">
+        <li>
+          <strong>Federal regulation and prison conditions.</strong>
+          Under the Prison Rape Elimination Act, states that do not certify compliance face a 5% reduction in
+          prison-related funding. Using the timing of facility audits linked to national survey and
+          administrative data, I test whether audits change facility conditions, recidivism, and earnings.
+        </li>
+        <li>
+          <strong>Pretextual stops.</strong>
+          Using variation in stop-initiation policies, I ask whether limiting officer discretion reduces racial
+          disparities or displaces them further into the legal process.
+        </li>
+        <li>
+          <strong>Race at each stage of the criminal process.</strong>
+          Linking Racial Justice Act data to administrative case records, I study whether disparities at
+          arrest and charging persist through plea bargaining and sentencing.
+        </li>
+      </ul>
+    </section>
+
+    <section id="background">
+      <h2>Background</h2>
+
+      <div class="entry">
+        <h3>Stanford Law School, Pre-Doctoral Research Fellow</h3>
+        <span class="when">2025 &ndash; present</span>
+        <div class="what">With John Donohue. Real Analysis coursework at Stanford.</div>
+      </div>
+
+      <div class="entry">
+        <h3>Free Our Vote, Research Assistant</h3>
+        <span class="when">2023 &ndash; 2025</span>
+        <div class="what">With Neel Sukhatme and Alexander Billy (Georgetown). Court-records data collection across 150+ counties and a randomized evaluation of a Pennsylvania get-out-the-vote campaign.</div>
+      </div>
+
+      <div class="entry">
+        <h3>Federal Reserve Bank of Atlanta, Consumer Compliance Intern</h3>
+        <span class="when">Summer 2024</span>
+      </div>
+
+      <div class="entry">
+        <h3>Resolution Economics, Research Assistant</h3>
+        <span class="when">2022 &ndash; 2023</span>
+      </div>
+
+      <div class="entry">
+        <h3>Georgetown University, B.A. Political Economy</h3>
+        <span class="when">2025</span>
+        <div class="what">Magna cum laude, honors in the major. Minors in Statistics and Computer Science. Teaching assistant for Principles of Microeconomics and Introduction to Mathematical Statistics. Chair of the Carroll Round International Economics Conference.</div>
+      </div>
+
+      <p><a class="cv-link" href="cv.pdf">Download full CV</a></p>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>
+        Stanford Law School, Stanford, CA<br>
+        <a href="mailto:markman1@law.stanford.edu">markman1@law.stanford.edu</a>
+      </p>
+    </section>
+
+    <footer>Last updated October 2026.</footer>
+  </main>
+</div>
+
+<script>
+  // Mark the current section in the nav as the reader scrolls.
+  (function () {
+    var links = document.querySelectorAll('.side nav a');
+    var sections = Array.prototype.map.call(links, function (a) {
+      return document.querySelector(a.getAttribute('href'));
+    });
+    if (!('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          links.forEach(function (a) { a.removeAttribute('aria-current'); });
+          var i = sections.indexOf(e.target);
+          if (i > -1) links[i].setAttribute('aria-current', 'true');
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    sections.forEach(function (s) { if (s) io.observe(s); });
+  })();
+</script>
+</body>
+</html>
