@@ -79,6 +79,14 @@
     font-size: .9rem;
     line-height: 1.5;
   }
+  .photo {
+    display: block;
+    width: 9.5rem;
+    height: 9.5rem;
+    object-fit: cover;
+    border-radius: 3px;
+    margin: 0 0 1.25rem;
+  }
   .side h1 {
     font-family: var(--serif);
     font-weight: 600;
@@ -122,7 +130,7 @@
   h3 { font-size: 1.125rem; font-weight: 600; margin: 0; }
   p { margin: 0 0 1rem; }
 
-  .lede { font-size: 1.3rem; line-height: 1.5; }
+  .lede { font-size: 1.2rem; line-height: 1.55; }
 
   .paper { margin-bottom: 1.75rem; }
   .paper .title { font-weight: 600; }
@@ -145,9 +153,6 @@
   }
   .paper .links { font-family: var(--sans); font-size: .85rem; margin: .35rem 0 0; }
   .paper .links a { margin-right: 1rem; }
-
-  .agenda { padding-left: 1.2rem; margin: 0 0 1rem; }
-  .agenda li { margin-bottom: .75rem; }
 
   .entry { display: grid; grid-template-columns: 1fr auto; column-gap: 1rem; margin-bottom: 1.1rem; }
   .entry .when { font-family: var(--sans); font-size: .85rem; color: var(--muted); padding-top: .25rem; white-space: nowrap; }
@@ -180,6 +185,7 @@
     .layout { grid-template-columns: 1fr; gap: 0; padding: 0 1.25rem; }
     .side { position: static; padding: 2.5rem 0 1.5rem; border-bottom: 1px solid var(--rule); }
     .side h1 { font-size: 2.2rem; }
+    .photo { width: 8rem; height: 8rem; }
     .side nav ul { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; }
     .side nav a { border-left: 0; padding: .2rem 0; }
     main { padding-top: 2rem; }
@@ -194,6 +200,7 @@
 <div class="layout">
 
   <aside class="side">
+    <img class="photo" src="headshot.jpg" alt="Tai Markman" width="400" height="400">
     <h1>Tai Markman</h1>
     <p class="role">
       <strong>Pre-Doctoral Research Fellow</strong><br>
@@ -204,7 +211,6 @@
       <ul>
         <li><a href="#about">About</a></li>
         <li><a href="#papers">Papers</a></li>
-        <li><a href="#agenda">Work in progress</a></li>
         <li><a href="#background">Background</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -221,23 +227,15 @@
 
     <section id="about">
       <p class="lede">
-        I study how criminal enforcement shapes communities: how policing practices affect crime,
-        how race affects outcomes at each stage of the criminal justice process, and what happens to
-        people after they move through the system.
-      </p>
-      <p>
         I am a pre-doctoral research fellow at Stanford Law School, working with
         <a href="https://law.stanford.edu/john-j-donohue-iii/">Professor John Donohue</a>
-        on empirical criminal justice research. I am also the lead quantitative researcher on
-        Racial Justice Act litigation with the Three Strikes Project, directed by Professor Michael Romano.
-        My methods are modern causal inference for panel data, especially staggered
-        difference-in-differences, along with randomized evaluations and item response theory.
+        on empirical law and economics and economics of crime research.
       </p>
       <p>
         I graduated from Georgetown University in 2025 with a B.A. in Political Economy.
         I am applying to economics Ph.D. programs for Fall 2027.
-        Fields: applied microeconomics, public economics, economics of crime and discrimination,
-        political economy, labor economics.
+        My fields of interest are economics of crime and discrimination, public economics, labor economics,
+        political economy, and general applied microeconomics.
       </p>
     </section>
 
@@ -301,29 +299,8 @@
             disenfranchisement.
           </p>
         </details>
+        <p class="links"><a href="https://repository.digital.georgetown.edu/handle/10822/1107876">Georgetown Repository</a></p>
       </article>
-    </section>
-
-    <section id="agenda">
-      <h2>Work in progress</h2>
-      <ul class="agenda">
-        <li>
-          <strong>Federal regulation and prison conditions.</strong>
-          Under the Prison Rape Elimination Act, states that do not certify compliance face a 5% reduction in
-          prison-related funding. Using the timing of facility audits linked to national survey and
-          administrative data, I test whether audits change facility conditions, recidivism, and earnings.
-        </li>
-        <li>
-          <strong>Pretextual stops.</strong>
-          Using variation in stop-initiation policies, I ask whether limiting officer discretion reduces racial
-          disparities or displaces them further into the legal process.
-        </li>
-        <li>
-          <strong>Race at each stage of the criminal process.</strong>
-          Linking Racial Justice Act data to administrative case records, I study whether disparities at
-          arrest and charging persist through plea bargaining and sentencing.
-        </li>
-      </ul>
     </section>
 
     <section id="background">
@@ -332,13 +309,11 @@
       <div class="entry">
         <h3>Stanford Law School, Pre-Doctoral Research Fellow</h3>
         <span class="when">2025 &ndash; present</span>
-        <div class="what">With John Donohue. Real Analysis coursework at Stanford.</div>
       </div>
 
       <div class="entry">
         <h3>Free Our Vote, Research Assistant</h3>
         <span class="when">2023 &ndash; 2025</span>
-        <div class="what">With Neel Sukhatme and Alexander Billy (Georgetown). Court-records data collection across 150+ counties and a randomized evaluation of a Pennsylvania get-out-the-vote campaign.</div>
       </div>
 
       <div class="entry">
@@ -352,9 +327,8 @@
       </div>
 
       <div class="entry">
-        <h3>Georgetown University, B.A. Political Economy</h3>
+        <h3>Georgetown University, B.A. Political Economy, magna cum laude</h3>
         <span class="when">2025</span>
-        <div class="what">Magna cum laude, honors in the major. Minors in Statistics and Computer Science. Teaching assistant for Principles of Microeconomics and Introduction to Mathematical Statistics. Chair of the Carroll Round International Economics Conference.</div>
       </div>
 
       <p><a class="cv-link" href="cv.pdf">Download full CV</a></p>
